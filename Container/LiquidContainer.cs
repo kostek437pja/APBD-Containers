@@ -15,13 +15,13 @@ public class LiquidContainer : Container, IHazardNotifier
         if (weight > maxAllowed)
         {
             NotifyHazard(SerialNumber);
-            throw new Exception("Hazardous cargo over limit.");
+            throw new OverfillException("Hazardous cargo over limit.");
         }
         base.LoadCargo(weight);
     }
     
     public void NotifyHazard(string containerNumber)
     {
-        Console.WriteLine($"Hazard alert! Container {containerNumber} exceeded limit.");
+        Console.WriteLine($"Container {containerNumber} exceeded limit.");
     }
 }

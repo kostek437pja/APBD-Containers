@@ -7,7 +7,7 @@ public abstract class Container
     public double MaxPayload { get; }
     public double CargoWeight { get; set; }
     
-    protected Container(string type, double maxPayload)
+    public Container(string type, double maxPayload)
     {
         SerialNumber = $"KON-{type}-{counter++}";
         MaxPayload = maxPayload;
@@ -16,7 +16,7 @@ public abstract class Container
     public virtual void LoadCargo(double weight)
     {
         if (weight > MaxPayload)
-            throw new Exception("OverfillException: Cargo exceeds maximum payload.");
+            throw new OverfillException("Cargo exceeds maximum payload.");
         CargoWeight = weight;
     }
 
