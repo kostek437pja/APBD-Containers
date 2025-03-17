@@ -6,13 +6,13 @@ class Program
     {
         ContainerShip ship = new ContainerShip("Ship", 40000, 100);
         
-        Container.Container bananaContainer = new RefrigeratedContainer(5000, "Bananas");
+        Container.Container bananaContainer = new RefrigeratedContainer(5000, "Bananas", 1000, 200, 300);
         bananaContainer.LoadCargo(4500);
         
-        Container.Container heliumContainer = new GasContainer(2000, 150);
+        Container.Container heliumContainer = new GasContainer(2000, 150, 1000, 200, 300);
         heliumContainer.LoadCargo(1800);
         
-        Container.Container fuelContainer = new LiquidContainer(3000, true);
+        Container.Container fuelContainer = new LiquidContainer(3000, true, 1000, 200, 300);
         
         try
         {

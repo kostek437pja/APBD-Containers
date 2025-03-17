@@ -11,7 +11,7 @@ public class RefrigeratedContainer : Container
     };
     public string StoredProduct { get; set; }
     
-    public RefrigeratedContainer(double maxPayload, string product) : base("C", maxPayload)
+    public RefrigeratedContainer(double maxPayload, string product, double height, double width, double depth) : base("C", maxPayload, height, width, depth)
     {
         if (!ProductTemperatures.ContainsKey(product))
             throw new ArgumentException("Invalid product type.");
