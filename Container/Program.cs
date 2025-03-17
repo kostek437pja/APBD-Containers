@@ -1,10 +1,11 @@
 ﻿using Container;
 
-class Program
+public class Program
 {
     static void Main()
     {
-        ContainerShip ship = new ContainerShip("Ship", 40000, 100);
+        ContainerShip ship1 = new ContainerShip("Ship1", 50000, 120, 30);
+        ContainerShip ship2 = new ContainerShip("Ship2", 40000, 100, 50);
         
         Container.Container bananaContainer = new RefrigeratedContainer(5000, "Bananas", 1000, 200, 300);
         bananaContainer.LoadCargo(4500);
@@ -13,6 +14,10 @@ class Program
         heliumContainer.LoadCargo(1800);
         
         Container.Container fuelContainer = new LiquidContainer(3000, true, 1000, 200, 300);
+        fuelContainer.LoadCargo(1500);
+
+        Container.Container milkContainer = new LiquidContainer(2500, false, 1000, 200, 300);
+        milkContainer.LoadCargo(2000);
         
         try
         {
@@ -23,18 +28,23 @@ class Program
             Console.WriteLine(ex.Message);
         }
         
-        ship.LoadContainer(bananaContainer);
-        ship.LoadContainer(heliumContainer);
-        ship.LoadContainer(fuelContainer);
-        
-        Console.WriteLine(ship);
+        ship1.LoadContainers(new List<Container.Container> { bananaContainer, heliumContainer, fuelContainer });
+        Console.WriteLine(ship1);
 
-        ship.RemoveContainer(heliumContainer);
-        Console.WriteLine("After removing helium container:");
-        Console.WriteLine(ship);
+        ship1.PrintContainers();
         
-        bananaContainer.UnloadCargo();
-        Console.WriteLine("After unloading banana container:");
-        Console.WriteLine(ship);
+        ship1.ReplaceContainer(heliumContainer.SerialNumber, milkContainer);
+        ship1.PrintContainers();
+
+        
+        ship1.TransferContainer(bananaContainer, ship2);
+        Console.WriteLine("Ship 1:");
+        ship1.PrintContainers();
+        Console.WriteLine("Ship 2:");
+        ship2.PrintContainers();
+
+        
+        fuelContainer.UnloadCargo();
+        ship1.PrintContainers();
     }
 }

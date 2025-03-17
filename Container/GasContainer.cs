@@ -14,6 +14,13 @@ public class GasContainer : Container, IHazardNotifier
         CargoWeight *= 0.05; 
     }
     
+    public override void LoadCargo(double weight)
+    {
+        if (weight > MaxPayload)
+            throw new OverfillException("Gas cargo exceeds maximum payload.");
+        base.LoadCargo(weight);
+    }
+    
     public void NotifyHazard(string containerNumber)
     {
         Console.WriteLine($"Gas hazard detected in container {containerNumber}!");
